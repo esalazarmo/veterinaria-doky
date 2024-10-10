@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-bottom: 2px solid black;
+    padding: 10px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    margin-right: 10px;
+}
+
+.logo span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    border: 1px solid black;
+    padding: 5px 10px;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.icons i {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.cart {
+    font-size: 16px;
+}
+
+.container {
+    padding: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.form-group input {
+    width: 300px;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.date-container {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.calendar-icon {
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.register-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: 2px solid black;
+    background-color: white;
+    cursor: pointer;
+}
