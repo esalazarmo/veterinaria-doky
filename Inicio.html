@@ -34,7 +34,43 @@
     <div class="imagen-container">
         <img src="Perro_nube_1.png" alt="Fondo" class="centrar-imagen"/>
         </div>
-        <a href="#" class="floating-btn">
+        
+        </body>
+        <div class="chat-box" id="chat-box">
+            <div class="headerb">
+             <span>
+              🔥 Emergencia 24 horas!
+             </span>
+             <i class="fas fa-times" onclick="toggleChat()">
+             </i>
+            </div>
+            <div class="bodyb">
+             <p>
+              Hola!👋
+             </p>
+             <p>
+              Estamos atentos a tu mensaje. Siempre listos para ayudar 🔥
+             </p>
+            </div>
+            <div class="footerb">
+             <input placeholder="Escríbenos" type="text"/>
+             <button>
+              <i class="fas fa-paper-plane">
+              </i>
+             </button>
+            </div>
+           </div>
+        
+        <a href="#" class="floating-btn" onclick="toggleChat()">
             <img src="Doki_bot_1.png" alt="Logo">
           </a>
-        </body>
+          <script>
+            function toggleChat() {
+                     var chatBox = document.getElementById('chat-box');
+                     if (chatBox.style.display === 'none' || chatBox.style.display === '') {
+                         chatBox.style.display = 'block';
+                     } else {
+                         chatBox.style.display = 'none';
+                     }
+                 }
+           </script>
