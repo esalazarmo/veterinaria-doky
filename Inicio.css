@@ -8,12 +8,28 @@ body {
 
 .imagen-container{
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
     height: 100vh;
 }
 
-
+.floating-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1;
+    border: none;
+    border-radius: 50%;
+    background-color: #fff;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .floating-btn img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
 .centrar-imagen {
 
     width: 80%;
