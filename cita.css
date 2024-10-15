@@ -1,0 +1,60 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f7fa;
+}
+.navbar {
+    padding: 10px 0;
+    font-family: 'Arial', sans-serif;
+}
+.navbar-nav .nav-link {
+    color: white !important;
+    font-weight: bold;
+    font-size: 16px;
+}
+.navbar-nav .nav-link:hover {
+    color: #cccccc !important;
+}
+.card {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.small-label {
+    font-size: 14px;
+    font-weight: bold;
+}
+.form-select, .form-control {
+    padding: 8px;
+    font-size: 14px;
+}
+.bg-light {
+    background-color: #f1f1f1 !important;
+}
+.btn-primary {
+    background-color: #4A90E2;
+    border: none;
+    transition: background-color 0.3s ease;
+    width: 50%;
+    display: block;
+    margin: 20px auto 20px -155px;
+}
+.btn-primary:hover {
+    background-color: #357ABD;
+}
+#calendar {
+    max-width: 255px;
+}
+.pika-single {
+    width: 255px !important;
+}
+.pika-lendar th, .pika-lendar td {
+    width: 20px !important;
+    padding: 0 !important;
+}
+.summary {
+    text-align: left;
+    margin-left: -165px;
+    max-width: 300px;
+}
+#calendar-container {
+    padding-left: 160px;
+}

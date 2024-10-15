@@ -28,13 +28,19 @@ body {
     font-weight: bold;
 }
 
-.nav a {
-    margin-right: 10px;
+.header .nav {
+    display: flex;
+    gap: 20px;
+}
+
+.header .nav a {
     text-decoration: none;
-    color: black;
-    font-size: 16px;
-    border: 1px solid black;
-    padding: 5px 10px;
+    color: #000;
+    font-size: 14px;
+}
+
+.header .nav a:hover {
+    text-decoration: underline;
 }
 
 .icons {

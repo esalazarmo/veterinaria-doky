@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinaria Doky - Agendar Cita</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/css/tabler.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
+    <link rel="stylesheet" href="cita.css">
+</head>
+<body class="bg-light">
+    <header class="navbar navbar-expand-md navbar-dark bg-primary">
+        <div class="container">
+            <a href="#" class="navbar-brand">Veterinaria Doky</a>
+            <div class="navbar-nav">
+                <a href="Inicio.html" class="nav-link">Inicio</a>
+                <a href="#" class="nav-link">Historial médico</a>
+                <a href="#" class="nav-link">Productos</a>
+                <a href="calificacion.html" class="nav-link">Calificación</a>
+                <a href="cita.html" class="nav-link">Agendar Cita</a>
+                <a href="Membresia.html">Membresía</a>
+                <a href="reguser.html">Registrate</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mt-4">
+        <div class="card p-4">
+            <h3 class="card-title">Agendar Cita</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <form>
+                        <div class="mb-3">
+                            <label for="specialty" class="form-label small-label">Especialidad:</label>
+                            <select id="specialty" name="specialty" class="form-select">
+                                <option value="desparasitacion">Desparasitación</option>
+                                <option value="vacunacion">Vacunación</option>
+                                <option value="consulta">Consulta General</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="time" class="form-label small-label">Hora:</label>
+                            <input type="time" id="time" name="time" value="15:00" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="petType" class="form-label small-label">Tipo de Mascota:</label>
+                            <select id="petType" name="petType" class="form-select">
+                                <option value="perro">Perro</option>
+                                <option value="gato">Gato</option>
+                                <option value="ave">Ave</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div id="calendar-container">
+                        <label class="form-label small-label">Fecha:</label>
+                        <div id="calendar"></div>
+                    </div>
+                    <div class="bg-light p-3 rounded mt-3 summary">
+                        <h5>Resumen de la Cita:</h5>
+                        <p><strong>Especialidad:</strong> Desparasitación</p>
+                        <p><strong>Tipo de Mascota:</strong> Perro</p>
+                        <p><strong>Hora:</strong> 3:00 pm</p>
+                        <p><strong>Fecha:</strong> 24 de septiembre 2024</p>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Reservar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/js/tabler.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+    <script>
+        new Pikaday({
+            field: document.getElementById('calendar'),
+            bound: false,
+            onSelect: function(date) {
+                document.querySelector('#date-display').textContent = date.toDateString();
+            }
+        });
+    </script>
+</body>
+</html>
