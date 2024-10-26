@@ -5,7 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Membresías</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link href="calificacion.css" rel="stylesheet"/> 
+    <link href="calificacion.css" rel="stylesheet"/>
+    <style>
+        /* Estilos del modal de inicio de sesión */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <div class="header">
@@ -29,35 +64,61 @@
         </div>
     </div>
     <div class="main">
-        <h1>Calificanos</h1>
-        <p>Por tu opinion es lo mas importante comentanos tu experiencia con nuestros servicios.</p>
+        <h1>Califícanos</h1>
+        <p>Tu opinión es importante, comenta tu experiencia con nuestros servicios.</p>
         <div class="container">
-            <div class="conntainer">
-                <div class="comentario">
-                    <textarea name="comentario" rows="25" cols="50">Escribe aquí tus comentarios</textarea>
-                    <div class="estrellas">
-                        <form>
-                            <p class="estrellas">
-                              <input id="radio1" type="radio" name="estrellas" value="5">
-                              <label for="radio1">★</label>
-                              <input id="radio2" type="radio" name="estrellas" value="4">
-                              <label for="radio2">★</label>
-                              <input id="radio3" type="radio" name="estrellas" value="3">
-                              <label for="radio3">★</label>
-                              <input id="radio4" type="radio" name="estrellas" value="2">
-                              <label for="radio4">★</label>
-                              <input id="radio5" type="radio" name="estrellas" value="1">
-                              <label for="radio5">★</label>
-                            </p>
-                          </form>
-                          
-                    </div>
-                    <button class="button">CALIFICAR</button>
+            <form id="formCalificacion">
+                <textarea name="comentario" rows="5" cols="50" placeholder="Escribe aquí tus comentarios"></textarea>
+                <div class="estrellas">
+                    <input id="radio1" type="radio" name="estrellas" value="5">
+                    <label for="radio1">★</label>
+                    <input id="radio2" type="radio" name="estrellas" value="4">
+                    <label for="radio2">★</label>
+                    <input id="radio3" type="radio" name="estrellas" value="3">
+                    <label for="radio3">★</label>
+                    <input id="radio4" type="radio" name="estrellas" value="2">
+                    <label for="radio4">★</label>
+                    <input id="radio5" type="radio" name="estrellas" value="1">
+                    <label for="radio5">★</label>
                 </div>
-
-              
-            </div>
+                <button type="button" class="button" onclick="mostrarModal()">CALIFICAR</button>
+            </form>
         </div>
     </div>
+
+    <!-- Modal de inicio de sesión -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            <form id="formLogin" method="POST" action="calificacion.php">
+                <input type="text" name="correo" placeholder="Correo electrónico" required>
+                <input type="password" name="contraseña" placeholder="Contraseña" required>
+                <input type="hidden" name="calificacion" id="calificacionInput">
+                <input type="hidden" name="comentario" id="comentarioInput">
+                <button type="submit" name="iniciar_sesion">Iniciar Sesión</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar el modal de inicio de sesión
+        function mostrarModal() {
+            var comentario = document.querySelector('textarea[name="comentario"]').value;
+            var calificacionSeleccionada = document.querySelector('input[name="estrellas"]:checked');
+            if (calificacionSeleccionada) {
+                document.getElementById('calificacionInput').value = calificacionSeleccionada.value;
+                document.getElementById('comentarioInput').value = comentario;
+                document.getElementById('loginModal').style.display = 'block';
+            } else {
+                alert('Por favor, selecciona una calificación.');
+            }
+        }
+
+        // Cerrar el modal
+        function cerrarModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+    </script>
 </body>
 </html>

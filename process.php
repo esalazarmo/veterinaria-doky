@@ -32,9 +32,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
-    // Encriptar la contraseña para mayor seguridad
-    $contrasena_encriptada = password_hash($contrasena, PASSWORD_BCRYPT);
-
     // Consulta de inserción en la tabla USUARIO
     $sql = "INSERT INTO USUARIO (Nombre_usuario, Correo_electronico, Contraseña, Fecha_registro, Calificacion_servicio) 
             VALUES (?, ?, ?, CURDATE(), ?)";
@@ -45,13 +42,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar si la preparación fue exitosa
     if ($stmt) {
         // Generar un correo electrónico de ejemplo (puedes cambiarlo por un campo real)
-        $correo_electronico = $usuario . '@ejemplo.com';
+        $correo_electronico = $usuario . '@dokivet.com';
 
         // Calificación predeterminada
         $calificacion_servicio = 5;
 
         // Enlazar los parámetros a la consulta preparada
-        $stmt->bind_param("sssi", $nombres, $correo_electronico, $contrasena_encriptada, $calificacion_servicio);
+        $stmt->bind_param("sssi", $nombres, $correo_electronico, $confirmar_contrasena, $calificacion_servicio);
 
         // Ejecutar la consulta
         if ($stmt->execute()) {
