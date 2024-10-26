@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fecha_nacimiento = $_POST['fecha_nacimiento'];
     $direccion = $_POST['direccion'];
     $telefono = $_POST['telefono'];
-    $usuario = $_POST['usuario'];
+    $correo = $_POST['correo'];
     $contrasena = $_POST['contrasena'];
     $confirmar_contrasena = $_POST['confirmar_contrasena'];
 
@@ -32,23 +32,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
+    // Calificación predeterminada
+    $calificacion_servicio = 5;
+
     // Consulta de inserción en la tabla USUARIO
-    $sql = "INSERT INTO USUARIO (Nombre_usuario, Correo_electronico, Contraseña, Fecha_registro, Calificacion_servicio) 
-            VALUES (?, ?, ?, CURDATE(), ?)";
+    $sql = "INSERT INTO USUARIO (Nombre_usuario, Correo_electronico, Contraseña, Fecha_registro, Calificacion_servicio, DNI, Telefono, Direccion) 
+            VALUES (?, ?, ?, CURDATE(), ?, ?, ?, ?)";
 
     // Preparar la consulta
     $stmt = $conexion->prepare($sql);
 
     // Verificar si la preparación fue exitosa
     if ($stmt) {
-        // Generar un correo electrónico de ejemplo (puedes cambiarlo por un campo real)
-        $correo_electronico = $usuario . '@dokivet.com';
-
-        // Calificación predeterminada
-        $calificacion_servicio = 5;
-
         // Enlazar los parámetros a la consulta preparada
-        $stmt->bind_param("sssi", $nombres, $correo_electronico, $confirmar_contrasena, $calificacion_servicio);
+        $nombre_usuario = $nombres . ' ' . $apellidos; // Combinar nombres y apellidos
+
+        $stmt->bind_param("sssisss", $nombre_usuario, $correo, $contrasena, $calificacion_servicio, $dni, $telefono, $direccion);
 
         // Ejecutar la consulta
         if ($stmt->execute()) {
