@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Historia Clínica</title>
+</head>
+<body>
+    <h2>Registro de Historia Clínica</h2>
+    <form action="guardar_historia_clinica.php" method="POST">
+        <label>ID Mascota:</label>
+        <input type="number" name="id_mascota" required><br>
+
+        <label>ID Veterinario:</label>
+        <input type="number" name="id_veterinario" required><br>
+
+        <label>Fecha de Consulta:</label>
+        <input type="date" name="fecha_consulta" required><br>
+
+        <label>Diagnóstico:</label>
+        <input type="text" name="diagnostico" required><br>
+
+        <label>Tratamiento:</label>
+        <input type="text" name="tratamiento" required><br>
+
+        <label>Observaciones:</label>
+        <input type="text" name="observaciones"><br>
+
+        <input type="submit" value="Guardar">
+    </form>
+</body>
+</html>
