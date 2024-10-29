@@ -15,8 +15,8 @@
         </div>
         <div class="nav">
             <a href="Inicio.html" class="nav-link">Inicio</a>
-            <a href="historiac.html" class="nav-link">Historial médico</a>
-            <a href="producto.html" class="nav-link">Productos</a>
+            <a href="#" class="nav-link">Historial médico</a>
+            <a href="#" class="nav-link">Productos</a>
             <a href="calificacion.html" class="nav-link">Calificación</a>
             <a href="cita.html" class="nav-link">Agendar Cita</a>
             <a href="Membresia.html">Membresía</a>
@@ -32,6 +32,7 @@
         <h1>Membresías</h1>
         <p>¡Cuida a tu mascota como se merece! Únete a la familia Doki y disfruta de beneficios exclusivos.</p>
         <div class="plans">
+            <!-- Membresía Básica -->
             <div class="plan">
                 <h2>Membresía Básica</h2>
                 <ul>
@@ -42,15 +43,21 @@
                     <li>- Acceso a una consulta nutricional anual gratuita</li>
                     <li>- Descuento en servicios de baño y corte de uñas (10%)</li>
                 </ul>
-                <a href="#">Ver más beneficios</a>
-                <div class="price">
-                    <i class="fas fa-money-bill-wave"></i>
-                    <span>S/ 75/mes</span>
-                </div>
-                <div class="button">
-                    <button>ADQUIRIR</button>
-                </div>
+                <form action="Membresia.php" method="POST">
+                    <input type="hidden" name="tipo_membresia" value="Básica">
+                    <input type="hidden" name="precio_mensual" value="75">
+                    <input type="hidden" name="beneficios" value="Consultas veterinarias con descuento, Acceso a promociones exclusivas, Recordatorios de citas y vacunas, Descuento en productos de la tienda (5%), Acceso a una consulta nutricional anual gratuita, Descuento en servicios de baño y corte de uñas (10%)">
+                    <div class="price">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>S/ 75/mes</span>
+                    </div>
+                    <div class="button">
+                        <button type="submit">ADQUIRIR</button>
+                    </div>
+                </form>
             </div>
+
+            <!-- Membresía Regular -->
             <div class="plan">
                 <h2>Membresía Regular</h2>
                 <ul>
@@ -62,15 +69,21 @@
                     <li>- Acceso a un grupo de WhatsApp exclusivo para consultas rápidas</li>
                     <li>- Descuento en servicios de entrenamiento básico (15%)</li>
                 </ul>
-                <a href="#">Ver más beneficios</a>
-                <div class="price">
-                    <i class="fas fa-box"></i>
-                    <span>S/ 130/mes</span>
-                </div>
-                <div class="button">
-                    <button>ADQUIRIR</button>
-                </div>
+                <form action="Membresia.php" method="POST">
+                    <input type="hidden" name="tipo_membresia" value="Regular">
+                    <input type="hidden" name="precio_mensual" value="130">
+                    <input type="hidden" name="beneficios" value="Todos los beneficios de la Membresía Básica, Descuentos adicionales en servicios de grooming, Acceso prioritario a citas, Chequeo dental anual gratuito, Descuento en productos de la tienda (10%), Acceso a un grupo de WhatsApp exclusivo para consultas rápidas, Descuento en servicios de entrenamiento básico (15%)">
+                    <div class="price">
+                        <i class="fas fa-box"></i>
+                        <span>S/ 130/mes</span>
+                    </div>
+                    <div class="button">
+                        <button type="submit">ADQUIRIR</button>
+                    </div>
+                </form>
             </div>
+
+            <!-- Membresía Premium -->
             <div class="plan">
                 <h2>Membresía Premium</h2>
                 <ul>
@@ -84,14 +97,18 @@
                     <li>- Servicio de transporte para citas (dentro de un radio de 10 km)</li>
                     <li>- Descuento en servicios de hospitalización y cirugía (20%)</li>
                 </ul>
-                <a href="#">Ver más beneficios</a>
-                <div class="price">
-                    <i class="fas fa-gem"></i>
-                    <span>S/ 185/mes</span>
-                </div>
-                <div class="button">
-                    <button>ADQUIRIR</button>
-                </div>
+                <form action="Membresia.php" method="POST">
+                    <input type="hidden" name="tipo_membresia" value="Premium">
+                    <input type="hidden" name="precio_mensual" value="185">
+                    <input type="hidden" name="beneficios" value="Todos los beneficios de la Membresía Regular, Consultas veterinarias gratuitas, Descuentos en productos y alimentos para mascotas, Servicio de emergencia 24/7, Vacunación anual gratuita, Descuento en productos de la tienda (15%), Acceso a charlas y talleres exclusivos sobre cuidado de mascotas, Servicio de transporte para citas (dentro de un radio de 10 km), Descuento en servicios de hospitalización y cirugía (20%)">
+                    <div class="price">
+                        <i class="fas fa-gem"></i>
+                        <span>S/ 185/mes</span>
+                    </div>
+                    <div class="button">
+                        <button type="submit">ADQUIRIR</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
