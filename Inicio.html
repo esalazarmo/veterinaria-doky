@@ -24,7 +24,7 @@
         <div class="icons">
             <i class="fas fa-search"></i>
             <i class="fas fa-shopping-cart"></i>
-            <span class="cart">Carrito (2)</span>
+            <span class="cart">Carrito (1)</span>
                 </head>
            </div>
     </div>
@@ -41,42 +41,70 @@
         <img src="Perro_nube_1.png" alt="Fondo" class="centrar-imagen"/>
         </div>
         
-        </body>
         <div class="chat-box" id="chat-box">
             <div class="headerb">
-             <span>
-              🔥 Emergencia 24 horas!
-             </span>
-             <i class="fas fa-times" onclick="toggleChat()">
-             </i>
+                <span>🔥 Emergencia 24 horas!</span>
+                <i class="fas fa-times" onclick="toggleChat()"></i>
             </div>
-            <div class="bodyb">
-             <p>
-              Hola!👋
-             </p>
-             <p>
-              Estamos atentos a tu mensaje. Siempre listos para ayudar 🔥
-             </p>
+            <div class="bodyb" id="chat-body">
+                <p>Hola! 👋</p>
+                <p>Estamos atentos a tu mensaje. Siempre listos para ayudar 🔥</p>
             </div>
             <div class="footerb">
-             <input placeholder="Escríbenos" type="text"/>
-             <button>
-              <i class="fas fa-paper-plane">
-              </i>
-             </button>
+                <input id="userMessage" placeholder="Escríbenos" type="text"/>
+                <button onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
             </div>
-           </div>
-        
-        <a href="#" class="floating-btn" onclick="toggleChat()">
+        </div>
+    
+        <a href="#" class="floating-btn" onclick="toggleChat()" id="floating-btn">
             <img src="Doki_bot_1.png" alt="Logo">
-          </a>
-          <script>
+        </a>
+    
+        <script>
             function toggleChat() {
-                     var chatBox = document.getElementById('chat-box');
-                     if (chatBox.style.display === 'none' || chatBox.style.display === '') {
-                         chatBox.style.display = 'block';
-                     } else {
-                         chatBox.style.display = 'none';
-                     }
-                 }
-           </script>
+                var chatBox = document.getElementById('chat-box');
+                var floatingBtn = document.getElementById('floating-btn');  // Selecciona el botón flotante
+                
+                if (chatBox.style.display === 'none' || chatBox.style.display === '') {
+                    chatBox.style.display = 'block';
+                    floatingBtn.style.display = 'none';  // Oculta el botón al mostrar el chat
+                } else {
+                    chatBox.style.display = 'none';
+                    floatingBtn.style.display = 'block';  // Muestra el botón si se cierra el chat
+                }
+            }
+    
+            function sendMessage() {
+                var userMessage = document.getElementById('userMessage').value;
+                if(userMessage.trim() === "") return;
+    
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "chatbot_backend.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        var chatBody = document.getElementById('chat-body');
+    
+                        // Añadir mensaje del usuario
+                        var userMsgElement = document.createElement('p');
+                        userMsgElement.textContent = "Tú: " + userMessage;
+                        chatBody.appendChild(userMsgElement);
+    
+                        // Añadir respuesta del bot
+                        var botMsgElement = document.createElement('p');
+                        botMsgElement.textContent = "DokiBot: " + (response.reply || "Lo siento, hubo un error.");
+                        chatBody.appendChild(botMsgElement);
+    
+                        document.getElementById('userMessage').value = "";
+                        chatBody.scrollTop = chatBody.scrollHeight; // Desplazar al último mensaje
+                    }
+                };
+                xhr.send("message=" + encodeURIComponent(userMessage));
+            }
+        </script>
+        </body>
+        
