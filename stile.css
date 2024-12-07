@@ -1,0 +1,474 @@
+/* Contenido principal */
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, sans-serif;
+    background-color: #c1f4f7;
+    margin: 0;
+    padding: 0;
+}
+
+.imagen-container{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 100vh;
+}
+
+.floating-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1;
+    border: none;
+    border-radius: 50%;
+    background-color: #fff;
+    padding: 5px;
+    cursor: pointer;
+  }
+  
+  .floating-btn img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+.centrar-imagen {
+
+    width: 80%;
+    max-width: 600px;
+       
+
+}
+
+.header {
+    background-color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.header .logo {
+    display: flex;
+    align-items: center;
+}
+
+.header .logo img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.header .nav {
+    display: flex;
+    gap: 20px;
+}
+
+.header .nav a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+}
+
+.header .nav a:hover {
+    text-decoration: underline;
+}
+
+.header .icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header .icons i {
+    font-size: 18px;
+    color: #000;
+}
+
+.header .cart {
+    font-size: 14px;
+}
+
+.contra {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    text-align: right;
+  }
+  
+  .contra .primero {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 66px;
+    line-height: 0%;
+    font-weight: bold;
+    color: #513cee;
+  }
+  
+  .contra .segundo {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 66px;  
+    font-weight: bold;
+    color: #513cee;
+  }
+
+  .contra .otra1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 24px;
+    color: #4953e4;
+  }
+  .contra .otra2 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 24px;
+    color: #4953e4;
+  }
+
+  .chat-box {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+.chat-box .headerb {
+    background-color: #ff6b35;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.chat-box .headerb i {
+    font-size: 18px;
+    cursor: pointer;
+}
+.chat-box .bodyb {
+    padding: 10px;
+}
+.chat-box .bodyb p {
+    margin: 0;
+}
+.chat-box .footerb {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+.chat-box .footerb input {
+    border: none;
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.chat-box .footerb button {
+    background-color: #ff6b35;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+
+
+
+.header .logo i {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.header .cart i {
+    font-size: 24px;
+    margin-right: 5px;
+}
+
+.breadcrumb {
+    margin: 20px;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: blue;
+}
+
+.product-container {
+    display: flex;
+    margin: 20px;
+}
+
+.product-images {
+    flex: 1;
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+.product-images .main-image {
+    width: 100%;
+    height: 500px;
+    border: 1px solid #000;
+    margin-bottom: 10px;
+}
+
+.product-images .thumbnail-images {
+    display: flex;
+    gap: 10px;
+}
+
+.product-images .thumbnail-images .thumbnail {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #000;
+}
+
+.product-details {
+    flex: 1;
+    padding: 10px;
+}
+
+.product-details h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.product-details .price {
+    font-size: 24px;
+    margin: 0;
+}
+
+.product-details .quantity,
+.product-details .units {
+    margin: 20px 0;
+}
+
+.product-details .quantity label,
+.product-details .units label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.product-details .quantity select,
+.product-details .units select {
+    width: 100%;
+    padding: 5px;
+}
+
+.product-details .add-to-cart {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.product-details .description {
+    margin-top: 20px;
+}
+
+.product-photos {
+    margin: 20px;
+}
+
+.product-photos h3 {
+    margin: 0;
+}
+
+.product-photos .photos {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.product-photos .photos .photo {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #000;
+}
+
+.cart-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: 1px solid #000;
+    padding: 10px;
+    background-color: white;
+    width: 200px;
+    display: none;
+}
+
+.cart-popup .cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.cart-popup .cart-item .item-details {
+    flex: 1;
+}
+
+.cart-popup .cart-item .item-price {
+    flex: 1;
+    text-align: right;
+}
+
+.cart-popup .cart-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-popup .cart-buttons button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+
+
+
+
+.navbar {
+    padding: 10px 0;
+    font-family: 'Arial', sans-serif;
+}
+.navbar-nav .nav-link {
+    color: white !important;
+    font-weight: bold;
+    font-size: 16px;
+}
+.navbar-nav .nav-link:hover {
+    color: #cccccc !important;
+}
+
+.card {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.small-label {
+    font-size: 14px;
+    font-weight: bold;
+}
+.form-select, .form-control {
+    padding: 8px;
+    font-size: 14px;
+}
+.bg-light {
+    background-color: #f1f1f1 !important;
+}
+.btn-primary {
+    background-color: #4A90E2;
+    border: none;
+    transition: background-color 0.3s ease;
+    width: 50%;
+    display: block;
+    margin: 20px auto 20px -155px;
+}
+.btn-primary:hover {
+    background-color: #357ABD;
+}
+#calendar {
+    max-width: 255px;
+}
+.pika-single {
+    width: 255px !important;
+}
+.pika-lendar th, .pika-lendar td {
+    width: 20px !important;
+    padding: 0 !important;
+}
+.summary {
+    text-align: left;
+    margin-left: -165px;
+    max-width: 300px;
+}
+#calendar-container {
+    padding-left: 160px;
+}
+
+
+.container {
+    padding: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.form-group input {
+    width: 300px;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.date-container {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.calendar-icon {
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.register-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: 2px solid black;
+    background-color: white;
+    cursor: pointer;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    margin-right: 10px;
+}
+
+.logo span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+
+.icons {
+    display: flex;
+    align-items: center;
+}
+
+.icons i {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.cart {
+    font-size: 16px;
+}
+
+
