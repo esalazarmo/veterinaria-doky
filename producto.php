@@ -59,7 +59,7 @@ $resultado = $conn->query($sql);
 
                     // Mostrando campos que existen en la tabla
                     if (isset($producto['precio'])) {
-                        echo '<div class="price">$' . number_format($producto['precio'], 2) . '</div>';
+                        echo '<div class="price">S/.' . number_format($producto['precio'], 2) . '</div>';
                     }
                     if (isset($producto['descripcion'])) {
                         echo '<div class="description">' . htmlspecialchars($producto['descripcion']) . '</div>';
