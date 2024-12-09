@@ -2,7 +2,7 @@
 // Conexión a la base de datos
 $servidor = "localhost";
 $usuario = "root";
-$clave = "";  // Deja vacío si no tienes contraseña para MySQL en XAMPP
+$clave = ""; 
 $bd = "dokibase";
 
 // Crear conexión
@@ -13,8 +13,15 @@ if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-// Consulta para obtener los productos
+// Obtener el término de búsqueda, si existe
+$busqueda = isset($_GET['search']) ? $_GET['search'] : '';
+
+// Consulta para obtener los productos (con filtro de búsqueda si se proporciona)
 $sql = "SELECT * FROM PRODUCTO";
+if ($busqueda) {
+    $sql .= " WHERE nombre_producto LIKE '%" . $conn->real_escape_string($busqueda) . "%'";
+}
+
 $resultado = $conn->query($sql);
 ?>
 <!DOCTYPE html>
@@ -27,7 +34,8 @@ $resultado = $conn->query($sql);
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="productos.css"/>
 </head>
-<div class="header">
+<body>
+    <div class="header">
         <div class="logo">
             <img alt="Logo" height="30" src="https://i.ibb.co/JcFc0Lv/Imagen-de-Whats-App-2024-10-10-a-las-15-35-43-a45846db-removebg-preview.png" width="30"/>
             <span>Doki</span>
@@ -39,35 +47,25 @@ $resultado = $conn->query($sql);
             <a href="calificacion.html" class="nav-link">Calificación</a>
             <a href="cita.html" class="nav-link">Agendar Cita</a>
             <a href="Membresia.html">Membresía</a>
-            <a href="reguser.html">Registrate</a>
+            <a href="reguser.html">Regístrate</a>
         </div>
-        <div class="icons">
-            <i class="fas fa-search"></i>
-            <i class="fas fa-shopping-cart"></i>
-            <span class="cart">Carrito (1)</span>
-                </head>
-           </div>
-    </div>
-<body>
-    
-    <div class="nav">
-        <a href="#">Destacados Mascotas</a>
-        <a href="#">Perros</a>
-        <a href="#">Gatos</a>
-        <a href="#">Reptiles</a>
-        <a href="#">Peces</a>
-        <a href="#">Salud y Bienestar</a>
-        <a href="#">Otras Mascotas</a>
     </div>
     <div class="container">
+        <!-- Formulario de búsqueda -->
+        <form method="GET" action="producto.php" class="search-form">
+            <input type="text" name="search" placeholder="Buscar productos..." value="<?php echo htmlspecialchars($busqueda); ?>" />
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
         <div class="section-title">Delicioso alimento</div>
         <div class="section-subtitle">Envío en horas</div>
+
+
+        <!-- Lista de productos -->
         <div class="product-list">
             <?php
             // Verificar si hay productos
             if ($resultado->num_rows > 0) {
-                // Iniciar contenedor de productos
-                while($producto = $resultado->fetch_assoc()) {
+                while ($producto = $resultado->fetch_assoc()) {
                     $imagenPath = 'img_prod/pro-' . $producto['id_producto'] . '.jpg'; // Ruta de la imagen
                     echo '<div class="product">';
                     echo '<img alt="' . htmlspecialchars($producto['nombre_producto']) . '" height="150" src="' . htmlspecialchars($imagenPath) . '" width="150"/>';
@@ -83,18 +81,17 @@ $resultado = $conn->query($sql);
                         $disponibilidad = $producto['disponibilidad'] ? 'Disponible' : 'No Disponible';
                         echo '<div class="availability">' . htmlspecialchars($disponibilidad) . '</div>';
                     }
+
+                    echo "<a href='det_productos.php?id=" . $producto['id_producto'] . "'>Ver detalles</a>";
                     echo '<button class="add-to-cart">+ Agregar</button>';
                     echo '</div>';
                 }
             } else {
-                echo "No hay productos registrados.";
+                echo "No se encontraron productos.";
             }
 
             $conn->close();
             ?>
-        </div>
-        <div class="view-more">
-            <a href="#">Ver más</a>
         </div>
     </div>
 </body>
