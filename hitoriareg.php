@@ -33,7 +33,7 @@ $conn->close();
     <title>Registrar Historia Clínica</title>
     <link rel="stylesheet" href="reghitoria.css"> <!-- Vinculación al CSS -->
     <script>
-        // Función para cargar las mascotas del usuario seleccionado
+        // Función para cargar las mascotas del usuario seleccionado -
         function cargarMascotas() {
             var idUsuario = document.getElementById('id_usuario').value;
             var xhr = new XMLHttpRequest();
