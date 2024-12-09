@@ -36,7 +36,7 @@ if (isset($_POST['enviar'])) {
     }
 }
 
-// Cerrar la conexión
+// Cerrar la conexión --
 mysqli_close($conexion);
 ?>
 
