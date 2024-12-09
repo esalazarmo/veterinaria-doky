@@ -20,7 +20,7 @@ $sql = $conn->prepare("INSERT INTO MASCOTA (nombre_mascota, especie, raza, edad,
 $sql->bind_param("sssii", $nombre_mascota, $especie, $raza, $edad, $id_usuario);
 
 if ($sql->execute()) {
-    echo "Mascota registrada con éxito.";
+    echo "<script>alert('Mascota registrada con éxito.'); window.location.href='historiac.html';</script>";
 } else {
     echo "Error: " . $conn->error;
 }
