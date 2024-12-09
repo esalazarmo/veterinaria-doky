@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historia Clinica</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link href="historiac.css" rel="stylesheet"/>
+    <title>Historias Clínicas</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="historiatile.css" rel="stylesheet"/>
 </head>
-<body>
+<body1>
     <div class="header">
         <div class="logo">
             <img alt="Logo" height="30" src="https://i.ibb.co/JcFc0Lv/Imagen-de-Whats-App-2024-10-10-a-las-15-35-43-a45846db-removebg-preview.png" width="30"/>
@@ -22,71 +22,85 @@
             <a href="Membresia.html">Membresía</a>
             <a href="reguser.html">Registrate</a>
         </div>
-        <div class="icons">
-            <i class="fas fa-bell"></i>
-            <i class="fas fa-user" onclick="location.href='Registro_Maestro.html'"></i>
-            <i class="fas fa-shopping-cart"></i>
+        <div>
+           
         </div>
     </div>
-    <div class="search-bar">
-        <i class="fas fa-search"></i>
-        <input placeholder="LR-000012" type="text"/>
+</body1>
+<body>
+    
+    <h1>Historias clinicas</h1>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar por nombre o correo">
+        <button onclick="searchOwner()"><i class="fas fa-search"></i></button>
     </div>
-    <div class="container">
-        <div class="main-content">
-            <div class="profile-header">
-                <img alt="Profile picture of a Labrador Retriever" height="100" src="https://storage.googleapis.com/a1aa/image/laZf0HwzqenSMU3tDFeOfXFV3LuUe9pOTzfyIfSerXaad7CrTA.jpg" width="100"/>
-                <div class="info">
-                    <h2>
-                        Luna
-                        <span class="verify">
-                            <i class="fas fa-check-circle"></i> Verify
-                        </span>
-                    </h2>
-                    <p>Labrador Retriever</p>
-                    <p>Especie: <span style="color: #007bff;">Canina</span></p>
-                </div>
-                <div class="actions">
-                    <button>Editar</button>
-                    <button>Eliminar</button>
-                    <button>Guardar</button>
-                </div>
-            </div>
-            <div class="section">
-                <h3>Motivo de la Consulta:</h3>
-                <p>Luna presenta cojera en la pata trasera derecha desde hace dos días. No ha habido mejoría con el reposo.</p>
-            </div>
-            <div class="section">
-                <h3>Antecedentes Médicos:</h3>
-                <p>Vacunaciones al día (última vacunación: 15 de marzo de 2024)</p>
-                <p>Desparasitación regular (última desparasitación: 1 de agosto de 2024)</p>
-                <p>Esterilizada a los 6 meses de edad</p>
-                <p>No alergias conocidas</p>
-            </div>
+
+    <table id="ownersTable">
+        <thead>
+            <tr>
+                <th>ID Usuario</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Los datos se llenan dinámicamente desde PHP -->
+        </tbody>
+    </table>
+
+    <!-- Modal -->
+    <div class="overlay" id="modalOverlay"></div>
+    <div class="modal" id="infoModal">
+        <div class="modal-header">
+            <span>Información del Dueño</span>
+            <span class="modal-close" id="modalClose">&times;</span>
         </div>
-        <div class="sidebar">
-            <div class="card">
-                <h3>Propietario: Juan Pérez</h3>
-                <p>Contacto: 99988800</p>
-                <p>Mail: juanp@mail.com</p>
-                <p>Dirección: Av Tulipanes</p>
-            </div>
-            <div class="card">
-                <h3>Notas Adicionales:</h3>
-                <ul>
-                    <li>Se recomienda mantener a Luna en un espacio tranquilo y evitar que suba o baje escaleras.</li>
-                    <li>Propietario informado sobre los signos de empeoramiento a vigilar (aumento del dolor, inflamación, fiebre).</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>Examen Físico:</h3>
-                <p>Peso: 25 kg</p>
-                <p>Temperatura: 38.5°C</p>
-                <p>Frecuencia Cardíaca: 90 bpm</p>
-                <p>Frecuencia Respiratoria: 20 rpm</p>
-                <p>Condición Corporal: 4/5</p>
-            </div>
+        <div class="modal-body">
+            <h3>Mascotas</h3>
+            <div id="petInfo"></div>
+            <h3>Historia Clínica</h3>
+            <div id="historyInfo"></div>
+            
+            <div id="formContainer"></div>
         </div>
     </div>
+
+    <script>
+        const modal = document.getElementById("infoModal");
+        const overlay = document.getElementById("modalOverlay");
+        const closeModal = document.getElementById("modalClose");
+
+        function openModal(userId) {
+            fetch(`fetch_info.php?userId=${userId}`)
+                .then(response => response.text())
+                .then(data => {
+                    const [petInfo, historyInfo] = data.split("###");
+                    document.getElementById("petInfo").innerHTML = petInfo;
+                    document.getElementById("historyInfo").innerHTML = historyInfo;
+                    modal.style.display = "block";
+                    overlay.style.display = "block";
+                });
+        }
+
+        function searchOwner() {
+            const searchValue = document.getElementById("searchInput").value;
+            fetch(`fetch_owners.php?search=${searchValue}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector("#ownersTable tbody").innerHTML = data;
+                });
+        }
+
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+            overlay.style.display = "none";
+        };
+
+        overlay.onclick = closeModal;
+
+    </script>
 </body>
 </html>
