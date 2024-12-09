@@ -27,14 +27,29 @@ $resultado = $conn->query($sql);
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="productos.css"/>
 </head>
-<body>
-    <div class="header">
-        <input placeholder="Buscar en Walmart" type="text"/>
-        <div class="icons">
-            <i class="fas fa-user"></i>
-            <i class="fas fa-shopping-cart"></i>
+<div class="header">
+        <div class="logo">
+            <img alt="Logo" height="30" src="https://i.ibb.co/JcFc0Lv/Imagen-de-Whats-App-2024-10-10-a-las-15-35-43-a45846db-removebg-preview.png" width="30"/>
+            <span>Doki</span>
         </div>
+        <div class="nav">
+            <a href="Inicio.html" class="nav-link">Inicio</a>
+            <a href="historiac.html" class="nav-link">Historial médico</a>
+            <a href="producto.php" class="nav-link">Productos</a>
+            <a href="calificacion.html" class="nav-link">Calificación</a>
+            <a href="cita.html" class="nav-link">Agendar Cita</a>
+            <a href="Membresia.html">Membresía</a>
+            <a href="reguser.html">Registrate</a>
+        </div>
+        <div class="icons">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart">Carrito (1)</span>
+                </head>
+           </div>
     </div>
+<body>
+    
     <div class="nav">
         <a href="#">Destacados Mascotas</a>
         <a href="#">Perros</a>
