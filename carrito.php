@@ -36,6 +36,8 @@ $sql = "SELECT * FROM PRODUCTO WHERE id_producto IN ($ids)";
 $resultado = $conn->query($sql);
 
 $conn->close();
+// Calcular el total de la compra
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -87,6 +89,10 @@ $conn->close();
                 echo "No hay productos en el carrito.";
             }
             ?>
+        </div>
+        <div class="total">
+            <h2>Total: S/ <?php echo number_format($total, 2); ?></h2>
+            
         </div>
     </div>
 </body>
