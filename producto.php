@@ -63,7 +63,7 @@ $conn->close();
             <a href="historiac.html" class="nav-link">Historial médico</a>
             <a href="producto.php" class="nav-link">Productos</a>
             <a href="calificacion.html" class="nav-link">Calificación</a>
-            <a href="cita.html" class="nav-link">Agendar Cita</a>
+            <a href="cita.php" class="nav-link">Agendar Cita</a>
             <a href="Membresia.html">Membresía</a>
             <a href="reguser.html">Regístrate</a>
         </div>
