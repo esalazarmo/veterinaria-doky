@@ -36,8 +36,9 @@ $sql = "SELECT * FROM PRODUCTO WHERE id_producto IN ($ids)";
 $resultado = $conn->query($sql);
 
 $conn->close();
-// Calcular el total de la compra
 
+// Calcular el total de la compra
+$total = 0;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -48,6 +49,23 @@ $conn->close();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="productos.css"/>
+    <style>
+        .btn-checkout {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .btn-checkout:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
     <div class="header">
@@ -74,8 +92,6 @@ $conn->close();
                     $imagenPath = 'img_prod/pro-' . $producto['id_producto'] . '.jpg'; // Ruta de la imagen
                     echo '<div class="product">';
                     echo '<img alt="' . htmlspecialchars($producto['nombre_producto']) . '" height="150" src="' . htmlspecialchars($imagenPath) . '" width="150"/>';
-
-                    // Mostrando campos que existen en la tabla
                     if (isset($producto['precio'])) {
                         echo '<div class="price">S/.' . number_format($producto['precio'], 2) . '</div>';
                     }
@@ -84,6 +100,7 @@ $conn->close();
                     }
                     echo '<a href="?remove_from_cart=' . $producto['id_producto'] . '" class="remove-from-cart">- Quitar</a>';
                     echo '</div>';
+                    $total += $producto['precio']; // Sumar el precio para el total
                 }
             } else {
                 echo "No hay productos en el carrito.";
@@ -92,8 +109,10 @@ $conn->close();
         </div>
         <div class="total">
             <h2>Total: S/ <?php echo number_format($total, 2); ?></h2>
-            
+        </div>
+        <div class="checkout">
+            <a href="pagar.php" class="btn-checkout">Pagar</a>
         </div>
     </div>
 </body>
-</html>
+</html>  
