@@ -29,6 +29,7 @@ if ($conn->query($sql) === TRUE) {
     // Obtener el último ID insertado
     $ultimo_id = $conn->insert_id;
     echo "Historia clínica registrada con éxito. El ID de la historia es: " . $ultimo_id;
+    echo "<script>alert('Historia clínica registrada con éxito.'); window.location.href='historiac.html';</script>";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

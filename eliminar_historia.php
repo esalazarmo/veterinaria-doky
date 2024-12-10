@@ -22,6 +22,7 @@ if ($idHistoria > 0) {
 
     if ($stmt->execute()) {
         echo "Historia clínica eliminada con éxito.";
+        echo "<script>alert('Historia clínica eliminada con éxito.'); window.location.href='historiac.html';</script>";
     } else {
         echo "Error al eliminar la historia clínica: " . $conn->error;
     }
