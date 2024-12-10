@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-12-2024 a las 06:33:23
+-- Tiempo de generación: 10-12-2024 a las 08:09:10
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -81,8 +81,18 @@ CREATE TABLE `cita` (
   `id_Usuario` int(11) DEFAULT NULL,
   `id_veterinario` int(11) DEFAULT NULL,
   `id_mascota` int(11) DEFAULT NULL,
-  `id_estilista` int(11) DEFAULT NULL
+  `id_estilista` int(11) DEFAULT NULL,
+  `hora` time DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `cita`
+--
+
+INSERT INTO `cita` (`id_cita`, `idchatbot`, `fecha_cita`, `tipo_servicio`, `estado_cita`, `id_Usuario`, `id_veterinario`, `id_mascota`, `id_estilista`, `hora`, `email`) VALUES
+(1, NULL, '2024-12-11', 'desparasitacion', NULL, NULL, 1, NULL, 1, '03:29:00', 'nhuaytapalma@gmail.com'),
+(2, NULL, '2024-12-11', 'vacunacion', NULL, NULL, 1, NULL, 1, '05:37:00', '1nhuaytapalma@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -96,6 +106,15 @@ CREATE TABLE `estilista` (
   `especialidad` varchar(255) DEFAULT NULL,
   `telefono` varchar(50) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `estilista`
+--
+
+INSERT INTO `estilista` (`id_estilista`, `nombre_estilista`, `especialidad`, `telefono`) VALUES
+(1, 'Juan Pérez', 'Corte de cabello', '987654321'),
+(2, 'María López', 'Coloración', '912345678'),
+(3, 'Carlos García', 'Peinados', '998877665');
 
 -- --------------------------------------------------------
 
@@ -125,7 +144,9 @@ INSERT INTO `historia_clinica` (`id_historia`, `id_mascota`, `id_veterinario`, `
 (2, 2, 2, '2024-03-05', 'Infección respiratoria', 'Antibióticos y reposo', 'Control en dos semanas'),
 (1, 1, 1, '2024-02-10', 'Alergia cutánea', 'Antihistamínicos', 'Evitar ciertos alimentos'),
 (7, 7, 3, '2024-08-03', 'Fractura en la pata', 'Cirugía y reposo', 'Radiografía de control en 15 días'),
-(8, 8, 4, '2024-09-10', 'Sobrepeso', 'Dieta hipocalórica', 'Ejercicio diario recomendado');
+(8, 8, 4, '2024-09-10', 'Sobrepeso', 'Dieta hipocalórica', 'Ejercicio diario recomendado'),
+(16, 168, 1, '2024-12-10', 'envenenamiento', 'vacunas para el veneno', 'en observacion 12 días'),
+(17, 168, 1, '2024-12-11', 'envenenamiento', 'vacunas para el veneno', 'en observacion 12 días');
 
 -- --------------------------------------------------------
 
@@ -154,7 +175,8 @@ INSERT INTO `mascota` (`id_mascota`, `nombre_mascota`, `especie`, `raza`, `edad`
 (5, 'Coco', 'Ave', 'Loro Amazónico', 5, 5),
 (6, 'Milo', 'Gato', 'Persa', 6, 6),
 (7, 'Bella', 'Perro', 'Bulldog Francés', 2, 7),
-(8, 'Rocky', 'Perro', 'Chihuahua', 3, 8);
+(8, 'Rocky', 'Perro', 'Chihuahua', 3, 8),
+(168, 'Magui', 'Canino', 'salchicha', 1, 26);
 
 -- --------------------------------------------------------
 
@@ -168,6 +190,13 @@ CREATE TABLE `membresia` (
   `precio_mensual` float DEFAULT NULL,
   `beneficios` varchar(255) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `membresia`
+--
+
+INSERT INTO `membresia` (`id_membresia`, `tipo_membresia`, `precio_mensual`, `beneficios`) VALUES
+(1, 'Regular', 130, 'Todos los beneficios de la Membresía Básica, Descuentos adicionales en servicios de grooming, Acceso prioritario a citas, Chequeo dental anual gratuito, Descuento en productos de la tienda (10%), Acceso a un grupo de WhatsApp exclusivo para consultas rápi');
 
 -- --------------------------------------------------------
 
@@ -206,8 +235,14 @@ CREATE TABLE `producto` (
 --
 
 INSERT INTO `producto` (`id_producto`, `nombre_producto`, `descripcion`, `precio`, `disponibilidad`) VALUES
-(1, 'Ricocan', 'Camida para perro 1kl', 20, b'1'),
-(2, 'Ricocat', 'Camida para gato 1kl', 19.5, b'1');
+(3, 'Pelota para Perro', 'Juguete resistente para perros de todas las edades.', 15.99, b'1'),
+(4, 'Comida para Gato', 'Bolsa de 5 kg de alimento seco para gatos.', 25.5, b'1'),
+(5, 'Collar Antiparasitario', 'Collar para proteger contra pulgas y garrapatas.', 12, b'1'),
+(6, 'Bebedero automático', 'Dispenser de agua que se mantiene lleno para mascotas.', 35, b'1'),
+(7, 'Juguete interactivo para gatos', 'Láser automático que mueve el punto de luz.', 20, b'1'),
+(8, 'Chaleco de sujeción', 'Chaleco para perros que ayuda a calmar en situaciones de estrés.', 18.75, b'1'),
+(9, 'Comida para Perro', 'Bolsa de 10 kg de alimento seco para perros.', 30, b'1'),
+(10, 'Cama ortopédica para mascotas', 'Cama especial para perros y gatos con problemas articulares.', 60, b'1');
 
 -- --------------------------------------------------------
 
@@ -255,7 +290,8 @@ INSERT INTO `usuario` (`IdUsuario`, `Nombre_usuario`, `Correo_electronico`, `Con
 (5, 'Luis Martínez', 'luis.martinez@example.com', 'L0vemyPet', '2024-04-20', 4, 'Buena experiencia.', '45678901', '987123456', 'Calle Luna 15'),
 (6, 'Lucía Fernández', 'lucia.fernandez@example.com', 'Fernandez@123', '2024-05-25', 5, 'Encantada con el servicio.', '12398765', '985624731', 'Jr. Sol Naciente 48'),
 (7, 'Pedro Morales', 'pedro.morales@example.com', 'moralesPedro!', '2024-06-30', 3, 'Algo de demora.', '78901234', '953267849', 'Av. Primavera 33'),
-(8, 'Sofía Ramírez', 'sofia.ramirez@example.com', 'Sofi@12345', '2024-07-15', 5, 'Muy recomendable.', '43210987', '912837465', 'Calle Victoria 67');
+(8, 'Sofía Ramírez', 'sofia.ramirez@example.com', 'Sofi@12345', '2024-07-15', 5, 'Muy recomendable.', '43210987', '912837465', 'Calle Victoria 67'),
+(26, 'Maricruz R ', 'tester@gmail.com', '12345', '2024-12-10', 5, NULL, '60876005', '935867681', 'Puente piedra');
 
 -- --------------------------------------------------------
 
@@ -395,34 +431,40 @@ ALTER TABLE `calendario`
   MODIFY `id_calendario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `cita`
+--
+ALTER TABLE `cita`
+  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `estilista`
 --
 ALTER TABLE `estilista`
-  MODIFY `id_estilista` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_estilista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `historia_clinica`
 --
 ALTER TABLE `historia_clinica`
-  MODIFY `id_historia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_historia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `mascota`
 --
 ALTER TABLE `mascota`
-  MODIFY `id_mascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+  MODIFY `id_mascota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
 -- AUTO_INCREMENT de la tabla `membresia`
 --
 ALTER TABLE `membresia`
-  MODIFY `id_membresia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_membresia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `servicio`
@@ -434,7 +476,7 @@ ALTER TABLE `servicio`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `IdUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `veterinario`
