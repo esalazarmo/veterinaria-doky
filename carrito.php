@@ -1,4 +1,21 @@
 <?php
+session_start();
+
+// Verificar si la sesión del carrito está inicializada
+if (empty($_SESSION['cart'])) {
+    echo "No hay productos en el carrito.";
+    exit;
+}
+
+// Procesar la solicitud de quitar un producto
+if (isset($_GET['remove_from_cart'])) {
+    $idProducto = $_GET['remove_from_cart'];
+    // Eliminar el producto del carrito
+    if (($key = array_search($idProducto, $_SESSION['cart'])) !== false) {
+        unset($_SESSION['cart'][$key]);
+    }
+}
+
 // Conexión a la base de datos
 $servidor = "localhost";
 $usuario = "root";
@@ -13,32 +30,10 @@ if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-// Obtener el término de búsqueda, si existe
-$busqueda = isset($_GET['search']) ? $_GET['search'] : '';
-
-// Consultar productos
-$sql = "SELECT * FROM PRODUCTO";
-if ($busqueda) {
-    $sql .= " WHERE nombre_producto LIKE '%" . $conn->real_escape_string($busqueda) . "%'";
-}
-
+// Consultar detalles de productos en el carrito
+$ids = implode(",", $_SESSION['cart']);
+$sql = "SELECT * FROM PRODUCTO WHERE id_producto IN ($ids)";
 $resultado = $conn->query($sql);
-
-// Manejar la acción de agregar al carrito
-if (isset($_GET['add_to_cart'])) {
-    session_start();
-    $productId = $_GET['add_to_cart'];
-    $_SESSION['cart'][] = $productId;
-}
-
-// Manejar la acción de quitar del carrito
-if (isset($_GET['remove_from_cart'])) {
-    session_start();
-    $productId = $_GET['remove_from_cart'];
-    if (($key = array_search($productId, $_SESSION['cart'])) !== false) {
-        unset($_SESSION['cart'][$key]);
-    }
-}
 
 $conn->close();
 ?>
@@ -47,7 +42,7 @@ $conn->close();
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Lista de Productos</title>
+    <title>Carrito de Compras</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="productos.css"/>
@@ -67,31 +62,11 @@ $conn->close();
             <a href="Membresia.html">Membresía</a>
             <a href="reguser.html">Regístrate</a>
         </div>
-        <!-- Vista de carrito -->
-    <div class="cart">
-        <a href="carrito.php">
-            <i class="fas fa-shopping-cart"></i> Carrito
-            <?php
-            session_start();
-            $cartCount = isset($_SESSION['cart']) ? count($_SESSION['cart']) : 0;
-            echo "<span>($cartCount)</span>";
-            ?>
-        </a>
-    </div>
     </div>
     <div class="container">
-        <!-- Formulario de búsqueda -->
-        <form method="GET" action="producto.php" class="search-form">
-            <input type="text" name="search" placeholder="Buscar productos..." value="<?php echo htmlspecialchars($busqueda); ?>" />
-            <button type="submit"><i class="fas fa-search"></i></button>
-        </form>
-        <div class="section-title">Delicioso alimento</div>
-        <div class="section-subtitle">Envío en horas</div>
-
-        <!-- Lista de productos -->
+        <h1>Carrito de Compras</h1>
         <div class="product-list">
             <?php
-            // Verificar si hay productos
             if ($resultado->num_rows > 0) {
                 while ($producto = $resultado->fetch_assoc()) {
                     $imagenPath = 'img_prod/pro-' . $producto['id_producto'] . '.jpg'; // Ruta de la imagen
@@ -105,17 +80,11 @@ $conn->close();
                     if (isset($producto['descripcion'])) {
                         echo '<div class="description">' . htmlspecialchars($producto['descripcion']) . '</div>';
                     }
-                    if (isset($producto['disponibilidad'])) {
-                        $disponibilidad = $producto['disponibilidad'] ? 'Disponible' : 'No Disponible';
-                        echo '<div class="availability">' . htmlspecialchars($disponibilidad) . '</div>';
-                    }
-
-                    echo "<a href='det_productos.php?id=" . $producto['id_producto'] . "'>Ver detalles</a>";
-                    echo '<a href="?add_to_cart=' . $producto['id_producto'] . '" class="add-to-cart">+ Agregar</a>';
+                    echo '<a href="?remove_from_cart=' . $producto['id_producto'] . '" class="remove-from-cart">- Quitar</a>';
                     echo '</div>';
                 }
             } else {
-                echo "No se encontraron productos.";
+                echo "No hay productos en el carrito.";
             }
             ?>
         </div>
