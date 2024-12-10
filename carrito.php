@@ -111,7 +111,7 @@ $total = 0;
             <h2>Total: S/ <?php echo number_format($total, 2); ?></h2>
         </div>
         <div class="checkout">
-            <a href="pagar.php" class="btn-checkout">Pagar</a>
+    <a href="pago.html" class="btn-checkout">Pagar</a>
         </div>
     </div>
 </body>
